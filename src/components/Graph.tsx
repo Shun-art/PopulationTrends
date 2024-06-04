@@ -57,6 +57,11 @@ const Graph: React.FC<Props> = ({ populationdata }) => {
       },
       tickInterval: 500000,
     },
+    legend: {
+      layout: 'vertical',
+      align: 'right',
+      verticalAlign: 'middle',
+    },
     // 都道府県を一つも選んでいない場合との分岐条件
     series:
       series.length === 0
