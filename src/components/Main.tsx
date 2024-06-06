@@ -16,6 +16,7 @@ const Main: React.FC = () => {
   const [prefPopulation, setPrefPopulation] = useState<
     { prefName: string; data: { year: number; value: number }[] }[]
   >([]);
+  const [populationType, setPopulationType] = useState<string>("総人口");
 
   useEffect(() => {
     axios
@@ -41,9 +42,11 @@ const Main: React.FC = () => {
           headers: { "X-API-KEY": import.meta.env.VITE_API_KEY },
         })
         .then((results) => {
+          const populationData = results.data.result.data;
+          const data = populationData.find((d: any) => d.label === populationType)?.data || [];
           c_prefPopulation.push({
             prefName: prefName,
-            data: results.data.result.data[0].data,
+            data: data,
           });
           setPrefPopulation(c_prefPopulation);
         })
@@ -55,11 +58,24 @@ const Main: React.FC = () => {
     }
   };
 
+  const handlePopulationTypeChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    setPopulationType(event.target.value);
+  };
+
   return (
     <main style={Styles.main}>
       <h2 style={Styles.label}>都道府県</h2>
       {prefectures && <CheckField prefectures={prefectures.result} onChange={handleClickCheck} />}
+
       <h2 style={Styles.label}>人口推移グラフ</h2>
+      <div style={Styles.dropdownContainer}>
+        <select style={Styles.dropdown} value={populationType} onChange={handlePopulationTypeChange}>
+          <option value="総人口">総人口</option>
+          <option value="年少人口">年少人口</option>
+          <option value="生産年齢人口">生産年齢人口</option>
+          <option value="老年人口">老年人口</option>
+        </select>
+      </div>
       <Graph populationdata={prefPopulation} />
     </main>
   );

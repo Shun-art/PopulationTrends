@@ -33,6 +33,15 @@ const Styles: { [key: string]: React.CSSProperties } = {
     padding: "5px",
     margin: "0.5rem",
   },
+  dropdownContainer: {
+    display: "flex",
+    justifyContent: "flex-end",
+    marginBottom: "1rem",
+  },
+  dropdown: {
+    padding: "0.5rem",
+    fontSize: "16px",
+  },
 };
 
 export const useResponsiveStyles = () => {
@@ -60,6 +69,11 @@ export const useResponsiveStyles = () => {
       ...Styles.graph,
       padding: isMobile ? "5px" : "10px",
     },
+    populationSwitch: {
+      ...Styles.populationSwitch,
+      padding: isMobile ? "5px 0" : "10px",
+      justifyContent: isMobile ? "center" : "flex-start",
+    },
     checkcardList: {
       ...Styles.checkcardList,
       padding: isMobile ? "5px 0" : "10px",
@@ -73,6 +87,14 @@ export const useResponsiveStyles = () => {
       ...Styles.text,
       marginLeft: isMobile ? "0.50px" : "0.5em",
       cursor: "pointer",
+    },
+    dropdownContainer: {
+      ...Styles.dropdownContainer,
+      justifyContent: isMobile ? "center" : "flex-end",
+    },
+    dropdown: {
+      ...Styles.dropdown,
+      padding: isMobile ? "25px" : "5px",
     },
   };
 };
