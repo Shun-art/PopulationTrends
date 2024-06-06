@@ -15,7 +15,8 @@ module.exports = {
 
     "plugin:jsx-a11y/recommended",
     "plugin:total-functions/recommended",
-    'prettier'
+    "prettier",
+    "plugin:prettier/recommended"
   ],
   ignorePatterns: ["dist"],
   parser: "@typescript-eslint/parser",
