@@ -6,8 +6,8 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
-    "format": "prettier --write \"**/*.{tsx}\"",
-    "lint": "eslint \"**/*.{tsx}\" --fix --quiet",
+    "format": "prettier --write \"**/*.{ts,tsx}\"",
+    "lint": "eslint \"**/*.{ts,tsx}\" --fix --quiet",
     "preview": "vite preview"
   },
   "dependencies": {
