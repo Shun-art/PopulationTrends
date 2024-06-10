@@ -42,6 +42,13 @@ const Styles: { [key: string]: React.CSSProperties } = {
   dropdown: {
     padding: '0.5rem',
     fontSize: '16px'
+  },
+  clearButton: {
+    padding: '5px 10px',
+    border: 'solid 1px #ccc',
+    borderRadius: '4px',
+    cursor: 'pointer',
+    margin: '10px 0 0 auto'
   }
 }
 
@@ -98,6 +105,9 @@ export const useResponsiveStyles = () => {
     dropdown: {
       ...Styles.dropdown,
       padding: isMobile ? '5px' : '5px'
+    },
+    clearButton: {
+      ...Styles.clearButton
     }
   }
 }

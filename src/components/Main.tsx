@@ -97,6 +97,11 @@ const Main = (): React.ReactElement => {
     setPopulationType(event.target.value)
   }
 
+  // Clearボタンが押されたときの処理
+  const handleClear = () => {
+    setPrefPopulation([]); // 人口データを空にする
+  };
+
   return (
     <main data-testid="main" style={Styles.main}>
       <h2 style={Styles.label}>都道府県</h2>
@@ -105,6 +110,7 @@ const Main = (): React.ReactElement => {
         <CheckField
           prefectures={prefectures.result}
           onChange={handleClickCheck}
+          onClear={handleClear} // Clearボタンのコールバック関数を渡す
         />
       )}
 
