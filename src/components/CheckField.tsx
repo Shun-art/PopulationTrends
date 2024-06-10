@@ -38,6 +38,10 @@ const CheckField = ({
     onClear()
   }
   return (
+    <>
+    <button style={Styles.clearButton} onClick={handleClear}>
+        Clear
+    </button>
     <div style={Styles.checkcardList}>
       {prefectures.map((prefecture) => (
         <div style={{ ...Styles.checkcard }} key={prefecture.prefCode}>
@@ -54,10 +58,9 @@ const CheckField = ({
           </label>
         </div>
       ))}
-      <button style={Styles.clearButton} onClick={handleClear}>
-        Clear
-      </button>
+      
     </div>
+    </>
   )
 }
 

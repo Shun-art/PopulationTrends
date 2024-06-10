@@ -44,9 +44,11 @@ const Styles: { [key: string]: React.CSSProperties } = {
     fontSize: '16px'
   },
   clearButton: {
-    padding: '5px 10px',
-    border: 'solid 1px #ccc',
-    borderRadius: '4px',
+    display: 'flex',
+    justifyContent: 'flex-end',
+    padding: '10px 25px',
+    border: 'solid 1px #BDBDBD',
+    borderRadius: '15px',
     cursor: 'pointer',
     margin: '10px 0 0 auto'
   }
@@ -107,7 +109,8 @@ export const useResponsiveStyles = () => {
       padding: isMobile ? '5px' : '5px'
     },
     clearButton: {
-      ...Styles.clearButton
+      ...Styles.clearButton,
+      justifyContent: isMobile ? 'center' : 'flex-end'
     }
   }
 }
