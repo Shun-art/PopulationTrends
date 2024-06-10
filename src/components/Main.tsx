@@ -100,7 +100,7 @@ const Main = (): React.ReactElement => {
   return (
     <main data-testid="main" style={Styles.main}>
       <h2 style={Styles.label}>都道府県</h2>
-      {error && <div data-testid="error-message" style={{ color: 'red' }}>{error}</div>}  // エラーメッセージを表示
+      {error && <div data-testid="error-message" style={{ color: 'red' }}>{error}</div>}
       {prefectures && (
         <CheckField
           prefectures={prefectures.result}
