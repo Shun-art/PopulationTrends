@@ -1,6 +1,7 @@
 import React from 'react'
 import Highcharts from 'highcharts'
 import HighchartsReact from 'highcharts-react-official'
+import accessibility from 'highcharts/modules/accessibility';
 import Styles from '../styles'
 
 type Props = {
@@ -9,6 +10,8 @@ type Props = {
     data: { year: number; value: number }[]
   }[]
 }
+
+accessibility(Highcharts);
 
 const Graph = ({ populationdata }: Props): React.ReactElement => {
   const series: Highcharts.SeriesOptionsType[] = []
@@ -63,7 +66,7 @@ const Graph = ({ populationdata }: Props): React.ReactElement => {
   }
 
   return (
-    <div style={Styles.graph}>
+    <div style={Styles.graph} data-testid="graph-container">
       <HighchartsReact highcharts={Highcharts} options={options} />
     </div>
   )
