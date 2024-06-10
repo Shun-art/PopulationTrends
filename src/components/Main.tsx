@@ -17,6 +17,7 @@ const Main = (): React.ReactElement => {
     { prefName: string; data: { year: number; value: number }[] }[]
   >([])
   const [populationType, setPopulationType] = useState<string>('総人口')
+  const [error, setError] = useState<string | null>(null)  // エラーメッセージの状態を追加
 
   useEffect(() => {
     axios
@@ -25,9 +26,11 @@ const Main = (): React.ReactElement => {
       })
       .then((results) => {
         setPrefectures(results.data)
+        setError(null)  // エラーメッセージをクリア
       })
-      .catch((error) => {
-        console.error('Error fetching prefectures:', error)
+      .catch((err) => {
+        console.error('Error fetching prefectures:', err)
+        setError('Error fetching prefectures')  // エラーメッセージを設定
       })
   }, [])
 
@@ -51,12 +54,11 @@ const Main = (): React.ReactElement => {
             p.prefName === prefName ? { prefName, data } : p
           )
         )
+        setError(null)  // エラーメッセージをクリア
       })
-      .catch((error) => {
-        console.error(
-          `Error fetching population data for ${prefName}:`,
-          error
-        )
+      .catch((err) => {
+        console.error(`Error fetching population data for ${prefName}:`, err)
+        setError(`Error fetching population data for ${prefName}`)  // エラーメッセージを設定
       })
   }, [populationType])
 
@@ -98,6 +100,7 @@ const Main = (): React.ReactElement => {
   return (
     <main data-testid="main" style={Styles.main}>
       <h2 style={Styles.label}>都道府県</h2>
+      {error && <div data-testid="error-message" style={{ color: 'red' }}>{error}</div>}  // エラーメッセージを表示
       {prefectures && (
         <CheckField
           prefectures={prefectures.result}
@@ -108,6 +111,8 @@ const Main = (): React.ReactElement => {
       <h2 style={Styles.label}>人口推移グラフ</h2>
       <div style={Styles.dropdownContainer}>
         <select
+          aria-label="人口推移グラフ"
+          data-testid="population-type-dropdown"
           style={Styles.dropdown}
           value={populationType}
           onChange={handlePopulationTypeChange}

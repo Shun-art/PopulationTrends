@@ -66,7 +66,7 @@ const Graph = ({ populationdata }: Props): React.ReactElement => {
   }
 
   return (
-    <div style={Styles.graph}>
+    <div style={Styles.graph} data-testid="graph-container">
       <HighchartsReact highcharts={Highcharts} options={options} />
     </div>
   )
